@@ -10,17 +10,17 @@ config :slackir,
   ecto_repos: [Slackir.Repo]
 
 # Configures the endpoint
-config :slackir, Slackir.Endpoint,
+config :slackir, SlackirWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "m39weehd5OAekPw/IQTnNOuZfOus+OWhRNvGKO5wkKbfpYjVXxvKpXZGQ8T+eiZl",
-  render_errors: [view: Slackir.ErrorView, accepts: ~w(html json)],
+  secret_key_base: "4MPJXt0mRBFLEp6qN+QEeOzR/bS0Y5lu/hyag5Q2P93hzJ1OCxKsc97xNmjWt9Cy",
+  render_errors: [view: SlackirWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Slackir.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:user_id]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
