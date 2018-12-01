@@ -18,6 +18,7 @@ defmodule SlackirWeb.RandomChannel do
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (random:lobby).
   def handle_in("shout", payload, socket) do
+    Slackir.Conversations.create_message(payload)
     broadcast socket, "shout", payload
     {:noreply, socket}
   end
