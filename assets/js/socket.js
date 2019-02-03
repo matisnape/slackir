@@ -53,6 +53,7 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 let channel = socket.channel("random:lobby", {});
+let private_channel = socket.channel("random:private", {});
 let list    = $('#message-list');
 let message = $('#message');
 let name    = $('#name');
@@ -72,5 +73,14 @@ channel.on('shout', payload => {
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+channel.on('messages_history', messages => {
+  let messages_list = messages["messages"];
+
+  messages_list.forEach( function(msg) {
+    list.append(`<b>${msg["name"] || 'Anonymous'}:</b> ${msg["message"]}<br>`);
+    list.prop({scrollTop: list.prop("scrollHeight")});
+  });
+});
 
 export default socket

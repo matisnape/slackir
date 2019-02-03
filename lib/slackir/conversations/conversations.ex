@@ -4,7 +4,7 @@ defmodule Slackir.Conversations do
   """
 
   import Ecto.Query, warn: false
-  alias Slackir.Repo
+  alias Slackir.Repo # takes the last part and allows to use Repo instead of Slackir.Repo
 
   alias Slackir.Conversations.Message
 
